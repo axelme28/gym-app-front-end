@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SignIn } from '../views/SigIn';
 import { Register } from '../views/Register';
 import Home from '../views/Home';
-import Trainings from '../views/trainings';
+import Trainings from '../views/Trainings';
 import Profile from '../views/Profile';
 import MainLayout from '../components/layout/MainLayout';
 import { NewWorkout } from '../views/NewWorkout';
