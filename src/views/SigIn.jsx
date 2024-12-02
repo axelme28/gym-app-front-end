@@ -23,6 +23,9 @@ export const SignIn = () => {
     }
 
     try {
+      console.log('login in .........');
+      console.log('this is my postLogin function ->');
+      console.log(postLogin);
       const { data: { token } } = await postLogin(values);
       localStorage.setItem('token', token)
       dispatch(setToken(token))
