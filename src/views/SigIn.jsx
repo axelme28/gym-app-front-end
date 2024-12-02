@@ -67,6 +67,7 @@ export const SignIn = () => {
         <div style={styles.a}>
           <Link to='/register' >Forgot password ?</Link>
         </div>
+
         {
           error.show && <Alert variant="outlined" severity="error" sx={{ width: '100%', marginTop: '1rem' }}>{error.msg}</Alert>
         }

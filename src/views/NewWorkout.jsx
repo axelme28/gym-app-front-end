@@ -4,25 +4,42 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTitle } from '../reducers/newWorkOut';
+import { ExerciseEdit } from '../components/ui/ExerciseEdit';
 
 
 export const NewWorkout = () => {
   const navigate = useNavigate();
-  const [workouts, setWorkouts] = useState([])
   const cancel = () => navigate('/trainings')
   const addExercise = () => navigate('/addExercise')
+  const { exercises, title } = useSelector(state => state.newWorkout)
+  const dispatch = useDispatch()
+  const handleChangeTitle = (e) => {
+    dispatch(setTitle(e.target.value))
+  }
   return (
     <>
       <header className='new-workout-header'>
-        <Button variant="text" color='error' size='small' onClick={cancel}>Cancel</Button>
+        <Button variant="text" color='error' size='small' onClick={cancel} >Cancel</Button>
         <p>New Workout</p>
         <Button variant="contained" size='small'>Save</Button>
       </header>
       <div className='app'>
-        <TextField fullWidth label="Title" variant='standard' placeholder='leg day' />
+        <TextField fullWidth label="Title" variant='standard' placeholder='leg day' value={title} onChange={handleChangeTitle} />
         {
-          workouts.length >= 1 ? (
-            <>{workouts}</>
+          exercises.length >= 1 ? (
+            <>{
+              exercises.map((exercise, index) => (
+                <ExerciseEdit
+                  key={index}
+                  img={exercise.gifUrl}
+                  name={exercise.name}
+                  sets={exercise.sets}
+                  repsRange={exercise.repsRange}
+                />
+              ))
+            }</>
           ) : (
             <div className='new-workout-advice'>
               <FitnessCenterIcon />
