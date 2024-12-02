@@ -49,14 +49,14 @@
   background-color: rgba(74, 144, 226, 0.1);
 }
 
-/* @keyframes pulse {
+@keyframes pulse {
   0% {
     transform: scale(1);
   }
   100% {
     transform: scale(1.15);
   }
-} */
+}
 
 /* Add fade-in animation when component mounts */
 @keyframes fadeIn {
@@ -71,6 +71,7 @@
 }
 
 .navbar-item {
+  animation: fadeIn 0.5s ease-in-out; /* Apply to each item */
 }
 
 /* Responsive adjustments */
