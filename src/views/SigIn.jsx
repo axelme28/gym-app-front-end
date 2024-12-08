@@ -34,7 +34,7 @@ export const SignIn = () => {
       navigate('home')
     } catch (error) {
       console.error(error);
-      setError({ show: true, msg: error.message })
+      setError({ show: true, msg: error.response.data.message })
     }
   }
 

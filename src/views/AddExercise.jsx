@@ -7,6 +7,7 @@ import { ExerciseListItem } from '../components/ui/ExerciseListItem';
 import { Bars } from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import { addBatch, addExercise, removeExercise } from '../reducers/newWorkOut';
+import { ExerciseInfo } from '../components/ui/ExerciseInfo';
 
 export const AddExercise = () => {
   const navigate = useNavigate();
@@ -16,11 +17,12 @@ export const AddExercise = () => {
   const [exercises, setExercises] = useState({});
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showInfo, setShowInfo] = useState({ show: false, data: {} });
   const dispatch = useDispatch()
 
   const handleSave = () => {
     navigate(-1)
-    const data = Object.entries(exercises).map(([i, data]) => data)
+    const data = Object.entries(exercises).map(([i, data]) => ({ gifUrl: data.gifUrl, name: data.name, id: data.id, sets: 1, from: 1, to: 1 }))
     dispatch(addBatch({ exercises: data }))
   }
   const handleAddExercise = (exercise) => {
@@ -34,6 +36,10 @@ export const AddExercise = () => {
       return updatedExercises;
     });
   };
+
+  const handleClickInfo = (item) => {
+    setShowInfo({ show: true, data: item })
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,40 +70,46 @@ export const AddExercise = () => {
   }, [searchTerm]);
 
   return (
-    <div>
-      <header className='new-workout-header'>
-        <Button variant="text" color='error' size='small' onClick={cancel}>Cancel</Button>
-        <p>Add exercise</p>
-        <Button variant="contained" size='small' onClick={handleSave}>Add ({Object.keys(exercises).length})</Button> {/* Fixed length calculation */}
-      </header>
-      <div className='app'>
-        <SearchBar onSearch={(query) => setSearchTerm(query)} />
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Bars
-              height="80"
-              width="80"
-              color="#4a90e2"
-              ariaLabel="bars-loading"
-              visible={true}
-            />
-          </div>
-        ) : (
-          <ul className='exercises-list'>
-            {searchData.map((item) => (
-              <ExerciseListItem
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                type={item.bodyPart}
-                imgSrc={item.gifUrl}
-                selected={!!exercises[item.id]}
-                click={() => handleAddExercise(item)}
-              />
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
+    <>
+      {
+        showInfo.show ? <ExerciseInfo close={() => setShowInfo({ show: false, data: {} })} data={showInfo.data} />
+          : <>
+            <header className='new-workout-header'>
+              <Button variant="text" color='error' size='small' onClick={cancel}>Cancel</Button>
+              <p>Add exercise</p>
+              <Button variant="contained" size='small' onClick={handleSave}>Add ({Object.keys(exercises).length})</Button> {/* Fixed length calculation */}
+            </header>
+            <div className='app_2'>
+              <SearchBar onSearch={(query) => setSearchTerm(query)} />
+              {loading ? (
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Bars
+                    height="80"
+                    width="80"
+                    color="#4a90e2"
+                    ariaLabel="bars-loading"
+                    visible={true}
+                  />
+                </div>
+              ) : (
+                <ul className='exercises-list'>
+                  {searchData.map((item) => (
+                    <ExerciseListItem
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      type={item.bodyPart}
+                      imgSrc={item.gifUrl}
+                      selected={!!exercises[item.id]}
+                      click={() => handleAddExercise(item)}
+                      clickInfo={() => handleClickInfo(item)}
+                    />
+                  ))}
+                </ul>
+              )}
+            </div>
+          </>
+      }
+    </>
   );
 };

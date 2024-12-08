@@ -22,6 +22,10 @@ export const newWorkOutSlice = createSlice(
       },
       addBatch(state, payload) {
         state.exercises = [...state.exercises, ...payload.payload.exercises]
+      },
+      setExerciseValue(state, action) {
+        const exercise = state.exercises.find(exercise => exercise.id === action.payload.id);
+        exercise[action.payload.key] = action.payload.value;
       }
     }
   }
@@ -31,7 +35,8 @@ export const {
   setTitle,
   addExercise,
   removeExercise,
-  addBatch
+  addBatch,
+  setExerciseValue
 } = newWorkOutSlice.actions
 
 export default newWorkOutSlice.reducer
