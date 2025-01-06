@@ -44,22 +44,17 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ## Project Screenshots
 
-Add images of your project here to showcase its features and design:
+![Homepage Screenshot](./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.02%20PM.jpeg)
 
-- **Sing In**
-  ![Homepage Screenshot](./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.02%20PM.jpeg)
+![Routine Management Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(5).jpeg>)
 
-- **Workouts**
-  ![Routine Management Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(5).jpeg>)
+![Exercise List Screenshot](./src//assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM.jpeg)
 
-  ![Exercise List Screenshot](./src//assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM.jpeg)
+![Exercise Selection Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(2).jpeg>)
 
-- **New Workout**
-  ![Exercise Selection Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(2).jpeg>)
+![Exercise Selection Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(3).jpeg>)
 
-  ![Exercise Selection Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(3).jpeg>)
-
-  ![Exercise Selection Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(1).jpeg>)
+![Exercise Selection Screenshot](<./src/assets/readme/WhatsApp%20Image%202025-01-06%20at%205.02.01%20PM%20(1).jpeg>)
 
 ---
 
