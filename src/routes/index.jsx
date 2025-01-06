@@ -7,7 +7,7 @@ import Home from '../views/Home';
 import Trainings from '../views/Trainings';
 import Profile from '../views/Profile';
 import MainLayout from '../components/layout/MainLayout';
-import { NewWorkout } from '../views/NewWorkout';
+import NewWorkout from '../views/NewWorkout';
 import { AddExercise } from '../views/AddExercise';
 import { RoutineDetail } from '../views/RoutineDetail';
 

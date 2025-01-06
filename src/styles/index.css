@@ -16,6 +16,9 @@ body {
 .app {
   padding: 1rem;
 }
+.app-content {
+  margin-bottom: 5rem;
+}
 
 .app_2 {
   padding: 1rem;

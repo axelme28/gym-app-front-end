@@ -9,9 +9,10 @@ import { setTitle } from '../reducers/newWorkOut';
 import { ExerciseEdit } from '../components/ui/ExerciseEdit';
 import { Alert, Snackbar } from '@mui/material';
 import { addRoutine } from '../server/apiService';
+import WithAuth from '../routes/WithAuth';
 
 
-export const NewWorkout = () => {
+const NewWorkout = () => {
 
   const [errorMsg, setErrorMsg] = useState({ open: false, msg: '' })
   const navigate = useNavigate();
@@ -39,7 +40,15 @@ export const NewWorkout = () => {
       setErrorMsg({ open: true, msg: 'success', type: 'success' })
       navigate('/trainings')
     } catch (error) {
-      setErrorMsg({ open: true, msg: error.message, type: 'error' })
+      console.log(error);
+      if (error.response.data.message) {
+        setErrorMsg({
+          open: true, msg: error.response.data.message, type: 'error'
+        })
+      } else {
+        setErrorMsg({ open: true, msg: error.message, type: 'error' })
+      }
+
     }
   }
 
@@ -98,3 +107,5 @@ export const NewWorkout = () => {
     </>
   )
 }
+
+export default WithAuth(NewWorkout)

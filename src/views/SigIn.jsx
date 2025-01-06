@@ -6,6 +6,8 @@ import { useForm } from '../hooks/useFrom';
 import { postLogin } from '../server/apiService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '../reducers/session';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 import icon from '../assets/undraw_access_account_re_8spm.svg'
 
 export const SignIn = () => {
@@ -13,6 +15,7 @@ export const SignIn = () => {
   const navigate = useNavigate()
   const [values, handleChange, reset] = useForm({ userName: '', password: '' });
   const [error, setError] = useState({ show: false, msg: '' })
+  const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
 
   const handleLogIn = async () => {
@@ -21,7 +24,7 @@ export const SignIn = () => {
       setError({ show: true, msg: 'All fields are required' })
       return
     }
-
+    setIsLoading(true)
     try {
       console.log('login in .........');
       console.log('this is my postLogin function ->');
@@ -31,6 +34,7 @@ export const SignIn = () => {
       dispatch(setToken(token))
       reset()
       setError({ show: false, msg: '' })
+      setIsLoading(false)
       navigate('home')
     } catch (error) {
       console.error(error);
@@ -63,7 +67,17 @@ export const SignIn = () => {
           />
         </div>
         <Link to='/register'>Don't have account? register here</Link>
-        <Button variant="contained" sx={{ width: '100%', marginTop: '1rem' }} onClick={handleLogIn} >Log In</Button>
+        {/* <Button variant="contained" sx={{ width: '100%', marginTop: '1rem' }} onClick={handleLogIn} >Log In</Button> */}
+        <LoadingButton
+          sx={{ width: '100%', marginTop: '1rem' }}
+          size="small"
+          onClick={handleLogIn}
+          loading={isLoading}
+          loadingPosition="end"
+          variant="contained"
+        >
+          Submit
+        </LoadingButton>
         <div style={styles.a}>
           <Link to='/register' >Forgot password ?</Link>
         </div>

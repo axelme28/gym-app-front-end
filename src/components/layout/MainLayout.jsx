@@ -28,9 +28,9 @@ const MainLayout = React.memo(({ children }) => { // Memoize the component
 
   return (
     <div className='app'>
-      {
-        children
-      }
+      <div className='app-content'>
+        {children}
+      </div>
       <div className='nav-container'>
         <div className='navbar'>
           {optionsSrc.map((item) => (
